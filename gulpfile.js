@@ -16,8 +16,8 @@ const reload = browSync.reload;
 const src = {
     html : 'public/*.pug',
     less : 'public/style.styl',
-    img : 'public/img/**/*.*',
-    svg : 'public/img/**/*.svg',
+    img : 'public/img/**/*.jpg',
+    svg : 'public/img/*.svg',
 }
 
 gulp.task('less1', function() {
@@ -57,7 +57,7 @@ gulp.task('svg', function() {
 		.pipe(svgSprite({
 			mode: {
 				symbol: {
-					sprite: "../sprite.svg",
+					sprite: "sprite.svg",
 				}
 			}
 		}))
@@ -91,7 +91,7 @@ gulp.task('sync', function() {
 gulp.task('watcher', function() {
     gulp.watch(src.less, ['less1']);
     gulp.watch(src.html, ['html']);
-    // gulp.watch(src.img, ['img']);
+    gulp.watch(src.img, ['img']);
     gulp.watch(src.img, ['svg']);
 })
 
