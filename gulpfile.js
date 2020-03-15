@@ -55,13 +55,11 @@ gulp.task('svg', function() {
 		}))
 		.pipe(replace('&gt;', '>'))
 		.pipe(svgSprite({
-			mode: {
-				symbol: {
+			svg: {
 					sprite: "sprite.svg",
-				}
 			}
 		}))
-		.pipe(gulp.dest('app'))
+		.pipe(gulp.dest('app/icon/'))
 		.pipe(reload({stream:true}));
 	}
 )
@@ -89,10 +87,10 @@ gulp.task('sync', function() {
 })
 
 gulp.task('watcher', function() {
+    gulp.watch(src.svg, ['svg']);
     gulp.watch(src.less, ['less1']);
     gulp.watch(src.html, ['html']);
     gulp.watch(src.img, ['img']);
-    gulp.watch(src.img, ['svg']);
 })
 
 gulp.task('default', ['watcher', 'sync'])
