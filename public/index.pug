@@ -1,7 +1,7 @@
 mixin icon(name)
 	- mod = mod || ''
 	svg(class="icon icon-" + name)
-		use(xlink:href="sprite.svg#" + name)
+		use(xlink:href="symbol/sprite.svg#" + name)
 
 html
 	head
@@ -9,7 +9,4 @@ html
 		link(rel="stylesheet" href="style.css")
 		meta(name="viewport" content="width=device-width, initial-scale=1")
 	body
-		h1 Hi!
-		p fksdfk
-		p dsfdsfsd
-		+icon('Union')
+		header.ada
