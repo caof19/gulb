@@ -55,8 +55,10 @@ gulp.task('svg', function() {
 		}))
 		.pipe(replace('&gt;', '>'))
 		.pipe(svgSprite({
-			svg: {
+			mode: {
+        stack: {
 					sprite: "sprite.svg",
+        }
 			}
 		}))
 		.pipe(gulp.dest('app/icon/'))
