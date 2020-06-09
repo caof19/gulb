@@ -9,32 +9,43 @@ svg
 	padding 0 15px
 	max-width 1140px
 	margin 0 auto
-.full
+full()
 	position absolute
 	top 0
 	left 0
 	width 100%
 	height 100%
-.ver--abs
+ver--abs()
 	position absolute
 	top 50%
 	transform: translateY(-50%)
-.horiz--abs
+horiz--abs()
 	position absolute
 	left 50%
 	transform: translateX(-50%)
-.center
+center()
 	position absolute
 	left 50%
 	top 50%
 	transform: translateX(-50%) translateY(-50%)
-.reset-margin
+reset-margin()
 	&:last-child
 		margin-right: 0
 	&:first-child
 		margin-left: 0
-.reset-ver
+reset-ver()
 	&:first-child
 		margin-top: 0
 	&:last-child
 		margin-bottom: 0
+smooth()
+	transition all .5s
+item_width(count, shift)
+	width calc(100%/count - shift*2)
+	margin-left: shift
+	margin-right: shift
+.row
+	display: flex
+	flex-wrap: wrap
+
+@import 'media/1200.styl'

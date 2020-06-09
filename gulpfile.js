@@ -15,8 +15,10 @@ const reload = browSync.reload;
 
 const src = {
     html : 'public/*.pug',
-    less : 'public/style.styl',
-    img : 'public/img/**/*.jpg',
+    blocks : 'public/blocks/*.pug',
+    less : 'public/css/style.styl',
+    media : 'public/css/media/*.styl',
+    img : 'public/img/*.jpg',
     svg : 'public/img/*.svg',
 }
 
@@ -29,7 +31,18 @@ gulp.task('less1', function() {
             browsers: ['last 8 versions'],
             cascade: false
         }))
-        .pipe(gulp.dest('app'))
+        .pipe(gulp.dest('app/css'))
+        .pipe(reload({stream:true}));
+})
+gulp.task('media', function() {
+    return gulp.src(src.media)
+        .pipe(plumber())
+        .pipe(less())
+        .pipe(min())
+        .pipe(pref({
+            browsers: ['last 8 versions'],
+            cascade: false
+        }))
         .pipe(reload({stream:true}));
 })
 
@@ -40,6 +53,14 @@ gulp.task('html', function() {
         	pretty: true
         }))
         .pipe(gulp.dest('app'))
+        .pipe(reload({stream:true}));
+})
+gulp.task('block', function() {
+    return gulp.src(src.blocks)
+        .pipe(plumber())
+        .pipe(pug({
+            pretty: true
+        }))
         .pipe(reload({stream:true}));
 })
 
@@ -91,7 +112,9 @@ gulp.task('sync', function() {
 gulp.task('watcher', function() {
     gulp.watch(src.svg, ['svg']);
     gulp.watch(src.less, ['less1']);
+    gulp.watch(src.media, ['media']);
     gulp.watch(src.html, ['html']);
+    gulp.watch(src.blocks, ['block']);
     gulp.watch(src.img, ['img']);
 })
 
