@@ -77,9 +77,9 @@ gulp.task('svg', function() {
 		.pipe(replace('&gt;', '>'))
 		.pipe(svgSprite({
 			mode: {
-        stack: {
+                stack: {
 					sprite: "sprite.svg",
-        }
+                }
 			}
 		}))
 		.pipe(gulp.dest('app/icon/'))
