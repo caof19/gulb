@@ -20,6 +20,7 @@ const src = {
     media : 'public/css/media/*.styl',
     img : 'public/img/*.jpg',
     svg : 'public/img/*.svg',
+    js : 'public/js/script.js',
 }
 
 gulp.task('less1', function() {
@@ -32,6 +33,11 @@ gulp.task('less1', function() {
             cascade: false
         }))
         .pipe(gulp.dest('app/css'))
+        .pipe(reload({stream:true}));
+})
+gulp.task('js', function() {
+    return gulp.src(src.js)
+        .pipe(gulp.dest('app/js'))
         .pipe(reload({stream:true}));
 })
 gulp.task('media', function() {
@@ -66,6 +72,7 @@ gulp.task('block', function() {
 
 gulp.task('svg', function() {
 	return gulp.src(src.svg)
+        .pipe(gulp.dest('app/img'))
 		.pipe(cheerio({
 			run: function ($) {
 				$('[fill]').removeAttr('fill');
@@ -110,7 +117,9 @@ gulp.task('sync', function() {
 })
 
 gulp.task('watcher', function() {
+    // gulp.watch(src.svg, ['svgFile']);
     gulp.watch(src.svg, ['svg']);
+    gulp.watch(src.js, ['js']);
     gulp.watch(src.less, ['less1']);
     gulp.watch(src.media, ['media']);
     gulp.watch(src.html, ['html']);
