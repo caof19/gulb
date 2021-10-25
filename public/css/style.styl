@@ -44,8 +44,17 @@ item_width(count, shift)
 	width calc(100%/count - shift*2)
 	margin-left: shift
 	margin-right: shift
-.row
+.flex-row
 	display: flex
-	flex-wrap: wrap
+.flex-wrap
+	display: flex
+	flex-wrap wrap;
+.flex-col
+	display: flex
+	flex-direction column
+.round
+	-webkit-border-radius: 50%
+	-moz-border-radius: 50%
+	border-radius: 50%
 
 @import 'media/1200.styl'

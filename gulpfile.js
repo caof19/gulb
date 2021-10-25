@@ -16,7 +16,7 @@ const reload = browSync.reload;
 const src = {
     html : 'public/*.pug',
     blocks : 'public/blocks/*.pug',
-    less : 'public/css/style.styl',
+    less : 'public/css/*.styl',
     media : 'public/css/media/*.styl',
     img : 'public/img/*.jpg',
     svg : 'public/img/*.svg',
@@ -78,7 +78,7 @@ gulp.task('svg', function() {
 		.pipe(svgSprite({
 			mode: {
                 stack: {
-					sprite: "sprite.svg",
+					sprite: "../sprite.svg",
                 }
 			}
 		}))
